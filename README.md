@@ -1,44 +1,66 @@
-<div align="center">
-  <img src=".github/logo.svg" alt="Quem é esse Pokémon?">
-</div>
 
-## Quem é esse Pokémon?
+![Logo](.github/logo.png)
 
-<h4 align="center">
-  Você conhece todos os nomes dos Pokémons?
-</h4>
+# Quem é esse Pokémon?!
 
-![Quem é esse Pokémon? preview](.github/preview.png)
+Teste quantos Pokémons você consegue capturar, acertando o nome ( do Pokémon 😜 ).
 
-## Tecnologias utilizadas
+
+## Demo
+
+***Em breve***
+
+## Screenshots
+
+Layout completo: [Figma](https://www.figma.com/file/HcNw19Nw12iWdjALFWds9Y/1-Quem-%C3%A9-esse-pokemon?node-id=333%3A13309)
+
+![App Screenshot1](.github/preview.png)
+![App Screenshot2](.github/preview2.png)
+
+## Features
+
+- Captura de Pokémons acertando o nome
+- Pokedex com os Pokémons capturados
+
+#### ***Em breve***
+
+- Desenvolvimento de Aplicativo para Android e IOS
+
+## Tecnologias
 
 - [ReactJS](https://reactjs.org/)
 - [Typescript](https://www.typescriptlang.org/)
 - [Next.js](https://nextjs.org/)
 
-## Iniciar
+## Execute localmente
 
-### Passos
-
-- Você precisa instalar [Node.js](https://nodejs.org/en/download/).
-
-**Clonar e acessar a pasta do projeto**
+Clone o projeto
 
 ```bash
-$ git clone https://github.com/nurycaroline/quem-e-esse-pokemon.git && cd quem-e-esse-pokemon
+  git clone https://link-to-project
 ```
 
-**Instalar as dependencias e executar**
+Vá para a pasta do projeto
 
 ```bash
-# Install the dependencies
-$ npm
-# Run the web server
-$ npm dev
+  cd my-project
 ```
 
-The app will be available for access on your browser at `http://localhost:3000`
+Instale as dependencias
 
-## 📝 License
+```bash
+  npm install
+```
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+Execute a aplicação
+
+```bash
+  npm run start
+```
+
+## Feedback
+
+Se você gostaria compartilhar algum feedback, você pode criar uma [issue](https://github.com/nurycaroline/quem-e-esse-pokemon/issues/new) ou entrar em contato pelo email: [nurycaroline@gmail.com](nurycaroline@gmail.co)
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
