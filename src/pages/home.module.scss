@@ -1,0 +1,56 @@
+@import "../styles/colors.scss";
+@import "../styles/fonts.scss";
+
+.homepage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: url("/bg-pattern.svg"),
+    linear-gradient(180deg, #3e5ca2 0%, #143685 100%);
+
+  h1 {
+    font-size: 80px;
+  }
+
+  h2 {
+    font-size: 52px;
+  }
+
+  h1,
+  h2 {
+    color: $secondary-yellow;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: $primary-blue;
+  }
+
+  p {
+    @include open-sans-semibold-16px;
+    color: $secondary-yellow;
+    position: absolute;
+    bottom: 10%;
+    right: 15%;
+
+    a {
+      text-decoration: none;
+      color: $secondary-yellow;
+    }
+  }
+
+  button {
+    color: $auxiliary-white;
+    background-color: $auxiliary-red;
+
+    width: 270px;
+    height: 50px;
+    border-radius: 20px;
+    border: none;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
+    font-family: Potta One;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+  }
+}

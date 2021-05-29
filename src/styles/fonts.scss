@@ -1,0 +1,170 @@
+@mixin open-sans-bold-10px {
+  vertical-align: top;
+  text-align: left;
+  font-family: Open Sans;
+  font-style: normal;
+  font-size: 10px;
+  font-weight: 700;
+}
+@mixin open-sans-bold-12px {
+  vertical-align: top;
+  text-align: left;
+  font-family: Open Sans;
+  font-style: normal;
+  font-size: 12px;
+  font-weight: 700;
+}
+@mixin open-sans-bold-16px {
+  vertical-align: top;
+  text-align: left;
+  font-family: Open Sans;
+  font-style: normal;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+@mixin open-sans-regular-12px {
+  letter-spacing: 1.2em;
+  vertical-align: top;
+  text-align: left;
+  font-family: Open Sans;
+  font-style: normal;
+  font-size: 12px;
+  font-weight: 400;
+}
+@mixin open-sans-regular-14px {
+  vertical-align: top;
+  text-align: left;
+  font-family: Open Sans;
+  font-style: normal;
+  font-size: 14px;
+  font-weight: 400;
+}
+@mixin open-sans-regular-16px {
+  letter-spacing: 1.6em;
+  vertical-align: top;
+  text-align: left;
+  font-family: Open Sans;
+  font-style: normal;
+  font-size: 16px;
+  font-weight: 400;
+}
+@mixin open-sans-regular-24px {
+  vertical-align: top;
+  text-align: left;
+  font-family: Open Sans;
+  font-style: normal;
+  font-size: 24px;
+  font-weight: 400;
+}
+@mixin open-sans-regular-36px {
+  vertical-align: top;
+  text-align: left;
+  font-family: Open Sans;
+  font-style: normal;
+  font-size: 36px;
+  font-weight: 400;
+}
+
+@mixin open-sans-semibold-12px {
+  vertical-align: top;
+  text-align: left;
+  font-family: Open Sans;
+  font-style: normal;
+  font-size: 10px;
+  font-weight: 600;
+}
+@mixin open-sans-semibold-16px {
+  vertical-align: top;
+  text-align: left;
+  font-family: Open Sans;
+  font-style: normal;
+  font-size: 16px;
+  font-weight: 600;
+}
+@mixin open-sans-semibold-24px {
+  vertical-align: top;
+  text-align: left;
+  font-family: Open Sans;
+  font-style: normal;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+@mixin potta-one-regular-16px {
+  vertical-align: top;
+  text-align: left;
+  font-family: Potta One;
+  font-style: normal;
+  font-size: 16px;
+  font-weight: 400;
+}
+@mixin potta-one-regular-24px {
+  vertical-align: top;
+  text-align: left;
+  font-family: Potta One;
+  font-style: normal;
+  font-size: 24px;
+  font-weight: 400;
+}
+@mixin potta-one-regular-24px-20 {
+  letter-spacing: 5em;
+  vertical-align: top;
+  text-align: left;
+  font-family: Potta One;
+  font-style: normal;
+  font-size: 25px;
+  font-weight: 400;
+}
+@mixin potta-one-regular-36 {
+  vertical-align: top;
+  text-align: left;
+  font-family: Potta One;
+  font-style: normal;
+  font-size: 36px;
+  font-weight: 400;
+}
+@mixin potta-one-regular-36-20 {
+  letter-spacing: 7.2em;
+  vertical-align: top;
+  text-align: left;
+  font-family: Potta One;
+  font-style: normal;
+  font-size: 36px;
+  font-weight: 400;
+}
+@mixin potta-one-regular-54-20 {
+  letter-spacing: 10.8em;
+  vertical-align: top;
+  text-align: left;
+  font-family: Potta One;
+  font-style: normal;
+  font-size: 54px;
+  font-weight: 400;
+}
+@mixin potta-one-regular-54-36 {
+  letter-spacing: 19.44em;
+  vertical-align: top;
+  text-align: left;
+  font-family: Potta One;
+  font-style: normal;
+  font-size: 54px;
+  font-weight: 400;
+}
+@mixin potta-one-regular-80 {
+  vertical-align: top;
+  text-align: left;
+  font-family: Potta One;
+  font-style: normal;
+  font-size: 80px;
+  font-weight: 400;
+}
+@mixin potta-one-regular-80-20 {
+  letter-spacing: 16em;
+  vertical-align: top;
+  text-align: left;
+  font-family: Potta One;
+  font-style: normal;
+  font-size: 80px;
+  font-weight: 400;
+}
