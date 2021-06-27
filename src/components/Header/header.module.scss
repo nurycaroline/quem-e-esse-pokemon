@@ -1,0 +1,37 @@
+@import "../../styles/colors.scss";
+@import "../../styles/fonts.scss";
+
+.header {
+	position: absolute;
+	display: flex;
+	width: 120px;
+	justify-content: space-between;
+	align-items: center;
+	margin: 24px 0 0 24px;
+	z-index: 10;
+
+	.btLogo {
+		width: 45px;
+	}
+
+	.btPokedex {
+		width: 50px;
+		height: 50px;
+		background: $primary-blue-light;
+		box-shadow: -1px -1px 3px $primary-blue-light,
+			1.5px 1.5px 3px $primary-blue-dark;
+		border-radius: 5px;
+		display: flex;
+
+		img {
+			width: 16px;
+			margin: auto;
+		}
+
+		&:active {
+			background: $primary-blue;
+			box-shadow: -1px -1px 3px $primary-blue,
+				1.5px 1.5px 3px $primary-blue-light;
+		}
+	}
+}

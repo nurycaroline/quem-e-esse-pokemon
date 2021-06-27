@@ -7,8 +7,7 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: url("/bg-pattern.svg"),
-    linear-gradient(180deg, #3e5ca2 0%, #143685 100%);
+  background: $gradients-gradient-01;
 
   h1 {
     font-size: 80px;
