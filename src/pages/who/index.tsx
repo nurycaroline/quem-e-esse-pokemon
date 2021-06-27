@@ -6,6 +6,7 @@ import { api } from "../../services/api";
 
 import styles from "./who.module.scss";
 import Header from "../../components/Header";
+import pokeIds from "../../helpers/pokeIds";
 
 export default function Who({ pokemon }) {
   const router = useRouter();
@@ -36,8 +37,9 @@ export default function Who({ pokemon }) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const { data } = await api.get(`pokemon/pikachu`);
-
+  const pokemonIdRandom = Math.floor(Math.random() * pokeIds.length);
+  const { data } = await api.get(`pokemon/${pokemonIdRandom}`);
+  
   const pokemon = {
     name: data.name,
     image: data.sprites.front_default,
