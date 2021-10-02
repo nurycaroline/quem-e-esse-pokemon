@@ -42,15 +42,6 @@ export default function Who({ pokemon }) {
   );
 }
 
-export async function getStaticPaths() {
-  const paths = pokeIds.map(article => ({ params: { articleId: article } }))
-
-  return {
-    paths,
-    fallback: false
-  }
-}
-
 
 export const getStaticProps: GetStaticProps = async () => {
   const pokemonIdRandom = Math.floor(Math.random() * pokeIds.length);
