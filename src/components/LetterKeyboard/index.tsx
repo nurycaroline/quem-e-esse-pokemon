@@ -5,10 +5,11 @@ import styles from "./letterKeyboard.module.scss";
 interface LetterKeyboardParams {
   letter: string;
   status: "check" | "nocheck" | null;
-  onClick():void
+  onClick(): void
+  disabled: boolean
 }
 
-const LetterKeyboard = ({ letter, status, onClick }: LetterKeyboardParams) => {
+const LetterKeyboard = ({ letter, status, onClick, disabled }: LetterKeyboardParams) => {
   const renderStatus = () => {
     switch (status) {
       case "check":
@@ -19,10 +20,10 @@ const LetterKeyboard = ({ letter, status, onClick }: LetterKeyboardParams) => {
   };
 
   return (
-    <p className={styles.letter} onClick={onClick}>
+    <button className={styles.letter} onClick={onClick} disabled={disabled}>
       {letter}
       {renderStatus()}
-    </p>
+    </button>
   );
 };
 

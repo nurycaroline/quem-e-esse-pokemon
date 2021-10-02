@@ -5,6 +5,8 @@ import styles from "./who.module.scss";
 
 interface YellowPartParams {
   pokemonName: string;
+  points: number
+  setPoints(point: number): void
 }
 
 const lettersFirstLine = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"]
@@ -12,16 +14,15 @@ const lettersSecondLine = ["a", "s", "d", "f", "g", "h", "j", "k", "l"]
 const lettersThirdLine = ["z", "x", "c", "v", "b", "n", "m"]
 const lines = [lettersFirstLine, lettersSecondLine, lettersThirdLine]
 
-const YellowPart = ({ pokemonName }: YellowPartParams) => {
+const YellowPart = ({ pokemonName, points, setPoints }: YellowPartParams) => {
   const [rightLetters, setRightLetters] = useState([])
   const [wrongLetters, setWrongLetters] = useState([])
-  const [points, setPoints] = useState(10)
 
   function nameHasLetter(letter) {
     if (pokemonName.includes(letter)) {
       setRightLetters([...rightLetters, letter])
     } else {
-      setPoints(points-1)
+      setPoints(points - 1)
       setWrongLetters([...wrongLetters, letter])
     }
   }
@@ -57,6 +58,7 @@ const YellowPart = ({ pokemonName }: YellowPartParams) => {
                     letter={letter}
                     onClick={() => nameHasLetter(letter)}
                     status={setLetterStatus(letter)}
+                    disabled={setLetterStatus(letter) !== null}
                   />
                 ))
               }

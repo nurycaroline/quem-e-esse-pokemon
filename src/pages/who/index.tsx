@@ -8,6 +8,8 @@ import styles from "./who.module.scss";
 import Header from "../../components/Header";
 import pokeIds from "../../helpers/pokeIds";
 import YellowPart from "./YellowPart";
+import React, { useState } from "react";
+import Modal, { BODY_ALERTS } from "../../components/Modal";
 
 interface Pokemon {
   name: string
@@ -16,6 +18,7 @@ interface Pokemon {
 
 export default function Who({ pokemon }) {
   const router = useRouter();
+  const [points, setPoints] = useState(10)
 
   if (router.isFallback) {
     return <p>Carregando...</p>;
@@ -31,15 +34,21 @@ export default function Who({ pokemon }) {
         <Header />
 
         <BluePart pokemonImage={pokemon.image} />
-        <YellowPart pokemonName={pokemon.name} />
+        <YellowPart
+          pokemonName={pokemon.name}
+          points={points}
+          setPoints={setPoints}
+        />
       </div>
+
+      {!points && <Modal>{BODY_ALERTS.gameOver}</Modal>}
     </div>
   );
 }
 
 export const getStaticProps: GetStaticProps = async () => {
   const pokemonIdRandom = Math.floor(Math.random() * pokeIds.length);
-  const pokemonId= pokeIds[pokemonIdRandom]
+  const pokemonId = pokeIds[pokemonIdRandom]
   const { data } = await api.get(`pokemon/${pokemonId}`);
 
   const pokemon = {

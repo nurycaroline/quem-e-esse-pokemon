@@ -57,3 +57,17 @@ button, a {
 a {
   display: block;
 }
+
+button {
+  outline: none;
+  background: none;
+  border: none;
+}
+
+input,
+textarea,
+button,
+select,
+a {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}

@@ -1,5 +1,7 @@
 import styles from "./home.module.scss";
 import Link from "next/link";
+import React from "react";
+import Button from "../components/Button";
 
 export default function Home() {
   return (
@@ -9,7 +11,7 @@ export default function Home() {
       <h1>?</h1>
 
       <Link href="/who" passHref>
-        <button>Começar</button>
+        <Button>Começar</Button>
       </Link>
       <p>
         desenvolvido por{" "}
