@@ -43,16 +43,12 @@ export default function Who({ pokemon }) {
 }
 
 export async function getStaticPaths() {
-  // const pokemons = await /* db query to get the list of articles or fetch from remote API*/
-
-  // generate a list of paths with route params
   const paths = pokeIds.map(article => ({ params: { articleId: article } }))
 
   return {
     paths,
     fallback: false
   }
-
 }
 
 
