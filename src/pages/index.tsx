@@ -11,7 +11,7 @@ export default function Home() {
       <h1>?</h1>
 
       <Link href="/who" passHref>
-        <Button>Começar</Button>
+        <a><Button>Começar</Button></a>
       </Link>
       <p>
         desenvolvido por{" "}
