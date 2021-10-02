@@ -1,0 +1,25 @@
+@import "../../styles/colors.scss";
+@import "../../styles/fonts.scss";
+
+.letter {
+  @include potta-one-regular-36-20;
+  text-transform: uppercase;
+  color: $primary-blue-dark;
+  width: 60px;
+  text-align: center;
+  letter-spacing: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    display: none;
+  }
+
+  .check,
+  .nocheck {
+    display: block;
+    position: absolute;
+    width: 40px;
+  }
+}

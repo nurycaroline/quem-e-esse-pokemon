@@ -1,12 +1,18 @@
 import { GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import Head from "next/head";
-
+import BluePart from "./BluePart";
 import { api } from "../../services/api";
 
 import styles from "./who.module.scss";
 import Header from "../../components/Header";
 import pokeIds from "../../helpers/pokeIds";
+import YellowPart from "./YellowPart";
+
+interface Pokemon {
+  name: string
+  image: string
+}
 
 export default function Who({ pokemon }) {
   const router = useRouter();
@@ -24,13 +30,8 @@ export default function Who({ pokemon }) {
       <div className={styles.who}>
         <Header />
 
-        <div className={styles.partOne}>
-          <div
-            className={styles.pokemon}
-            style={{ backgroundImage: `url(${pokemon.image})` }}
-          />
-        </div>
-        <div className={styles.partTwo}></div>
+        <BluePart pokemonImage={pokemon.image} />
+        <YellowPart pokemonName={pokemon.name} />
       </div>
     </div>
   );
@@ -39,7 +40,7 @@ export default function Who({ pokemon }) {
 export const getStaticProps: GetStaticProps = async () => {
   const pokemonIdRandom = Math.floor(Math.random() * pokeIds.length);
   const { data } = await api.get(`pokemon/${pokemonIdRandom}`);
-  
+
   const pokemon = {
     name: data.name,
     image: data.sprites.front_default,

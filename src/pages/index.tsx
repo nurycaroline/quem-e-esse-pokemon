@@ -13,7 +13,7 @@ export default function Home() {
       </Link>
       <p>
         desenvolvido por{" "}
-        <a target="_blank" href="https://github.com/nurycaroline">@NuryCaroline</a>
+        <a target="_blank" href="https://nurielly.dev">@NuryCaroline</a>
       </p>
     </div>
   );
