@@ -22,7 +22,7 @@ const YellowPart = ({ pokemonName, points, setPoints }: YellowPartParams) => {
   const [showModalPokeballs, setShowModalPokeballs] = useState(false)
 
   function nameHasLetter(letter) {
-    if (pokemonName.includes(letter)) {
+    if ([...pokemonName].includes(letter)) {
       setRightLetters([...rightLetters, letter])
     } else {
       setPoints(points - 1)
