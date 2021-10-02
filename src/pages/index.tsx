@@ -13,10 +13,6 @@ export default function Home() {
       <Link href="/who" passHref>
         <a><Button>Começar</Button></a>
       </Link>
-      <p>
-        desenvolvido por{" "}
-        <a target="_blank" href="https://nurielly.dev">@NuryCaroline</a>
-      </p>
     </div>
   );
 }
