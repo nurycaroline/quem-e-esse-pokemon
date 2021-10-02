@@ -70,7 +70,7 @@ const YellowPart = ({ pokemonName, points, setPoints }: YellowPartParams) => {
   return (
     <div className={styles.yellowPart}>
       <div className={styles.blocksName}>
-        {[...pokemonName].map((letter, idx) => (
+        {pokemonName && Array.from(pokemonName).map((letter, idx) => (
           <p key={idx}>{(rightLetters.includes(letter) || letter == "-") && letter}</p>
         ))}
       </div>
