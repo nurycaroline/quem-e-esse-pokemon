@@ -10,7 +10,7 @@ interface BluePartParams {
 const BluePart = ({ pokemonImage, id }: BluePartParams) => {
   return (
     <div className={styles.bluePart}>
-      <h1>#{id}</h1>
+      {/* <h1>#{id}</h1> */}
       <div
         className={styles.pokemon}
         style={{ backgroundImage: `url(${pokemonImage})` }}
