@@ -39,7 +39,8 @@ export default function Who({ pokemon }) {
 
 export const getStaticProps: GetStaticProps = async () => {
   const pokemonIdRandom = Math.floor(Math.random() * pokeIds.length);
-  const { data } = await api.get(`pokemon/${pokemonIdRandom}`);
+  const pokemonId= pokeIds[pokemonIdRandom]
+  const { data } = await api.get(`pokemon/${pokemonId}`);
 
   const pokemon = {
     name: data.name,

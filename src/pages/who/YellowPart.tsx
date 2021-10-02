@@ -39,16 +39,13 @@ const YellowPart = ({ pokemonName }: YellowPartParams) => {
     <div className={styles.yellowPart}>
       <div className={styles.blocksName}>
         {[...pokemonName].map((letter, idx) => (
-          <p key={idx}>{letter}</p>
+          <p key={idx}>{(rightLetters.includes(letter) || letter == "-") && letter}</p>
         ))}
       </div>
       <div className={styles.heart}>
         <img src="/heart.svg" />
         <span>{points}</span>
       </div>
-      rightLetters: {rightLetters.join(",")}
-      <br />
-      wrongLetters: {wrongLetters.join(",")}
       <div className={styles.keyboard}>
         {
           lines.map((line, i) => (
@@ -63,8 +60,6 @@ const YellowPart = ({ pokemonName }: YellowPartParams) => {
                   />
                 ))
               }
-              {/* <LetterKeyboard letter="" status="check" />
-              <LetterKeyboard letter="" status="nocheck" /> */}
             </div>
           ))
         }

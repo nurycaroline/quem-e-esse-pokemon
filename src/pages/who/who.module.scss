@@ -37,6 +37,7 @@
     width: 90%;
     flex-wrap: wrap;
     justify-content: center;
+    flex-grow: 0.1;
 
     p {
       @include potta-one-regular-36-20;
@@ -50,6 +51,10 @@
       letter-spacing: 0;
       background-color: $auxiliary-white;
       text-align: center;
+
+      &:empty{
+        background-color: $primary-blue-light;
+      }
     }
 
     p + p {
