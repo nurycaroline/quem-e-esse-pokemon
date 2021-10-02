@@ -10,17 +10,17 @@ export const BODY_ALERTS = {
 			<img src="/logo.svg" alt="Logo" />
 			<h2>O jogo acabou!</h2>
 			<Link href="/" passHref>
-				<Button>Tentar novamente</Button>
+				<a><Button>Tentar novamente</Button></a>
 			</Link>
 		</div>
 	),
-	winPokeball: (
+	winPokeball: callBack => (
 		<div className={styles.winPokeball}>
 			<img src="/pokeball.svg" alt="Logo" />
 			<h2>Parabéns voce ganhou uma <strong>Pokébola</strong>!</h2>
 			<p>Pokébolas desbloqueiam uma letra correta.</p>
 			<Link href="/who" passHref>
-				<Button>Continuar</Button>
+				<a><Button onClick={callBack}>Continuar</Button></a>
 			</Link>
 		</div>
 	)

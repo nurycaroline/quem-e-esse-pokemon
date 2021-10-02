@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import LetterKeyboard from "../../components/LetterKeyboard";
+import Modal, { BODY_ALERTS } from "../../components/Modal";
 
 import styles from "./who.module.scss";
 
@@ -36,6 +37,23 @@ const YellowPart = ({ pokemonName, points, setPoints }: YellowPartParams) => {
     return null
   }
 
+  function clean() {
+    setRightLetters([])
+    setWrongLetters([])
+  }
+
+  function checkShowModal() {
+    const nameReplace = pokemonName ? pokemonName.replace(/-/g, ''): ''
+    if (nameReplace && [...nameReplace].every(r=> rightLetters.includes(r))) {
+      return (
+        <Modal>
+          {BODY_ALERTS.winPokeball(clean)}
+        </Modal>
+      )
+    }
+    return
+  }
+
   return (
     <div className={styles.yellowPart}>
       <div className={styles.blocksName}>
@@ -66,6 +84,7 @@ const YellowPart = ({ pokemonName, points, setPoints }: YellowPartParams) => {
           ))
         }
       </div>
+      { checkShowModal() }
     </div>
   );
 };
