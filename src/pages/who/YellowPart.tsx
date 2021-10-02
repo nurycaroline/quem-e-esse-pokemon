@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import LetterKeyboard from "../../components/LetterKeyboard";
 import Modal, { BODY_ALERTS } from "../../components/Modal";
 
@@ -18,6 +18,8 @@ const lines = [lettersFirstLine, lettersSecondLine, lettersThirdLine]
 const YellowPart = ({ pokemonName, points, setPoints }: YellowPartParams) => {
   const [rightLetters, setRightLetters] = useState([])
   const [wrongLetters, setWrongLetters] = useState([])
+  const [amountPokeballs, setAmountPokeballs] = useState(0)
+  const [showModalPokeballs, setShowModalPokeballs] = useState(false)
 
   function nameHasLetter(letter) {
     if (pokemonName.includes(letter)) {
@@ -40,19 +42,30 @@ const YellowPart = ({ pokemonName, points, setPoints }: YellowPartParams) => {
   function clean() {
     setRightLetters([])
     setWrongLetters([])
+    setShowModalPokeballs(false)
   }
 
-  function checkShowModal() {
-    const nameReplace = pokemonName ? pokemonName.replace(/-/g, ''): ''
-    if (nameReplace && [...nameReplace].every(r=> rightLetters.includes(r))) {
-      return (
-        <Modal>
-          {BODY_ALERTS.winPokeball(clean)}
-        </Modal>
-      )
-    }
-    return
+  function heandlePokeball() {
+    setAmountPokeballs(amountPokeballs - 1)
+    let letterNotFound = [];
+
+    [...pokemonName].forEach(l => {
+      if (!rightLetters.includes(l)) {
+        letterNotFound.push(l)
+      }
+    });
+
+    nameHasLetter(letterNotFound[0])
   }
+
+  useEffect(() => {
+    const nameReplace = pokemonName ? pokemonName.replace(/-/g, '') : ''
+    if (nameReplace && [...nameReplace].every(r => rightLetters.includes(r))) {
+      setAmountPokeballs(amountPokeballs + 1)
+      setShowModalPokeballs(true)
+    }
+
+  }, [rightLetters])
 
   return (
     <div className={styles.yellowPart}>
@@ -83,8 +96,18 @@ const YellowPart = ({ pokemonName, points, setPoints }: YellowPartParams) => {
             </div>
           ))
         }
+        <button className={styles.btPokeball} onClick={heandlePokeball} disabled={!amountPokeballs}>
+          <img src="/pokeball.svg" alt="" />
+          <p>{amountPokeballs}</p>
+        </button>
       </div>
-      { checkShowModal() }
+      {
+        showModalPokeballs && (
+          <Modal>
+            {BODY_ALERTS.winPokeball(clean)}
+          </Modal>
+        )
+      }
     </div>
   );
 };

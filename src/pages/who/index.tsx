@@ -11,10 +11,6 @@ import YellowPart from "./YellowPart";
 import React, { useState } from "react";
 import Modal, { BODY_ALERTS } from "../../components/Modal";
 
-interface Pokemon {
-  name: string
-  image: string
-}
 
 export default function Who({ pokemon }) {
   const router = useRouter();
@@ -33,7 +29,7 @@ export default function Who({ pokemon }) {
       <div className={styles.who}>
         <Header />
 
-        <BluePart pokemonImage={pokemon.image} />
+        <BluePart id={pokemon.id} pokemonImage={pokemon.image} />
         <YellowPart
           pokemonName={pokemon.name}
           points={points}
@@ -52,6 +48,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const { data } = await api.get(`pokemon/${pokemonId}`);
 
   const pokemon = {
+    id: data.id,
     name: data.name,
     image: data.sprites.front_default,
   };
