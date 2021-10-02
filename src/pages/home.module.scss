@@ -24,7 +24,7 @@
     -webkit-text-stroke-color: $primary-blue;
   }
 
-  p {
+  span {
     @include open-sans-semibold-16px;
     color: $secondary-yellow;
     position: absolute;
@@ -32,7 +32,6 @@
     right: 15%;
 
     a {
-      text-decoration: none;
       color: $secondary-yellow;
     }
   }

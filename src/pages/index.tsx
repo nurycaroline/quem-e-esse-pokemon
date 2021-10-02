@@ -13,6 +13,8 @@ export default function Home() {
       <Link href="/who" passHref>
         <a><Button>Começar</Button></a>
       </Link>
+
+      <span>desenvolvido por <a href="https://nurielly.dev/">NuryCaroline</a></span>
     </div>
   );
 }
