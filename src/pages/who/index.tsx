@@ -57,6 +57,6 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       pokemon,
     },
-    revalidate: 60 * 60 * 24, //24 hours
+    revalidate: false, //60 * 60 * 24, //24 hours
   };
 };
