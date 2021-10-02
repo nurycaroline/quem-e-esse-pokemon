@@ -42,6 +42,20 @@ export default function Who({ pokemon }) {
   );
 }
 
+export async function getStaticPaths() {
+  // const pokemons = await /* db query to get the list of articles or fetch from remote API*/
+
+  // generate a list of paths with route params
+  const paths = pokeIds.map(article => ({ params: { articleId: article } }))
+
+  return {
+    paths,
+    fallback: false
+  }
+
+}
+
+
 export const getStaticProps: GetStaticProps = async () => {
   const pokemonIdRandom = Math.floor(Math.random() * pokeIds.length);
   const pokemonId = pokeIds[pokemonIdRandom]
@@ -57,6 +71,6 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       pokemon,
     },
-    revalidate: 20, //60 * 60 * 24, //24 hours
+    revalidate: true, //60 * 60 * 24, //24 hours
   };
 };
