@@ -1,4 +1,3 @@
-import { GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import BluePart from "./BluePart";
@@ -8,17 +7,34 @@ import styles from "./who.module.scss";
 import Header from "../../components/Header";
 import pokeIds from "../../helpers/pokeIds";
 import YellowPart from "./YellowPart";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Modal, { BODY_ALERTS } from "../../components/Modal";
 
 
-export default function Who({ pokemon }) {
+export default function Who() {
   const router = useRouter();
+  const [pokemon, setPokemon] = useState({})
   const [points, setPoints] = useState(10)
 
   if (router.isFallback) {
     return <p>Carregando...</p>;
   }
+
+  useEffect(() => {
+    async function loadPokemon() {
+      const pokemonIdRandom = Math.floor(Math.random() * pokeIds.length);
+      const pokemonId = pokeIds[pokemonIdRandom]
+      const { data } = await api.get(`pokemon/${pokemonId}`);
+
+      setPokemon({
+        id: data.id,
+        name: data.name,
+        image: data.sprites.front_default,
+      })
+    }
+
+    loadPokemon()
+  }, [])
 
   return (
     <div>
@@ -26,7 +42,8 @@ export default function Who({ pokemon }) {
         <title>Quem é esse Pokemon?</title>
       </Head>
 
-      <div className={styles.who}>
+      {
+        pokemon && pokemon.id && (<div className={styles.who}>
         <Header />
 
         <BluePart id={pokemon.id} pokemonImage={pokemon.image} />
@@ -35,7 +52,8 @@ export default function Who({ pokemon }) {
           points={points}
           setPoints={setPoints}
         />
-      </div>
+      </div>)
+      }
 
       {!points && <Modal>{BODY_ALERTS.gameOver}</Modal>}
     </div>
@@ -43,21 +61,19 @@ export default function Who({ pokemon }) {
 }
 
 
-export const getStaticProps: GetStaticProps = async () => {
-  const pokemonIdRandom = Math.floor(Math.random() * pokeIds.length);
-  const pokemonId = pokeIds[pokemonIdRandom]
-  const { data } = await api.get(`pokemon/${pokemonId}`);
-
-  const pokemon = {
-    id: data.id,
-    name: data.name,
-    image: data.sprites.front_default,
-  };
-
-  return {
-    props: {
-      pokemon,
-    },
-    revalidate: true, //60 * 60 * 24, //24 hours
-  };
-};
+// export const getStaticProps: GetStaticProps = async () => {
+//   const pokemonIdRandom = Math.floor(Math.random() * pokeIds.length);
+//   const pokemonId = pokeIds[pokemonIdRandom]
+//   const { data } = await api.get(`pokemon/${pokemonId}`);
+//   const pokemon = {
+//     id: data.id,
+//     name: data.name,
+//     image: data.sprites.front_default,
+//   };
+//   return {
+//     props: {
+//       pokemon,
+//     },
+//     revalidate: true, //60 * 60 * 24, //24 hours
+//   };
+// };
