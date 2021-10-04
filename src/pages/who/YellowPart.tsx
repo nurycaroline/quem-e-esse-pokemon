@@ -8,6 +8,7 @@ interface YellowPartParams {
   pokemonName: string;
   points: number
   setPoints(point: number): void
+  loadPokemon(): void
 }
 
 const lettersFirstLine = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"]
@@ -15,7 +16,7 @@ const lettersSecondLine = ["a", "s", "d", "f", "g", "h", "j", "k", "l"]
 const lettersThirdLine = ["z", "x", "c", "v", "b", "n", "m"]
 const lines = [lettersFirstLine, lettersSecondLine, lettersThirdLine]
 
-const YellowPart = ({ pokemonName, points, setPoints }: YellowPartParams) => {
+const YellowPart = ({ pokemonName, points, setPoints, loadPokemon }: YellowPartParams) => {
   const [rightLetters, setRightLetters] = useState([])
   const [wrongLetters, setWrongLetters] = useState([])
   const [amountPokeballs, setAmountPokeballs] = useState(0)
@@ -40,6 +41,7 @@ const YellowPart = ({ pokemonName, points, setPoints }: YellowPartParams) => {
   }
 
   function clean() {
+    loadPokemon()
     setRightLetters([])
     setWrongLetters([])
     setShowModalPokeballs(false)
@@ -79,6 +81,7 @@ const YellowPart = ({ pokemonName, points, setPoints }: YellowPartParams) => {
         <span>{points}</span>
       </div>
       <div className={styles.keyboard}>
+        { pokemonName }
         {
           lines.map((line, i) => (
             <div className={styles.lines} key={i}>

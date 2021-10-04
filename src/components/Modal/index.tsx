@@ -19,7 +19,8 @@ export const BODY_ALERTS = {
 			<img src="/pokeball.svg" alt="Logo" />
 			<h2>Parabéns voce ganhou uma <strong>Pokébola</strong>!</h2>
 			<p>Pokébolas desbloqueiam uma letra correta.</p>
-			<Link href="/who" passHref>
+
+			<Link href="/who">
 				<a><Button onClick={callBack}>Continuar</Button></a>
 			</Link>
 		</div>

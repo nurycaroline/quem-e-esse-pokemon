@@ -25,19 +25,19 @@ export default function Who() {
     return <p>Carregando...</p>;
   }
 
+  async function loadPokemon() {
+    const pokemonIdRandom = Math.floor(Math.random() * pokeIds.length);
+    const pokemonId = pokeIds[pokemonIdRandom]
+    const { data } = await api.get(`pokemon/${pokemonId}`);
+
+    setPokemon({
+      id: data.id,
+      name: data.name,
+      image: data.sprites.front_default,
+    })
+  }
+
   useEffect(() => {
-    async function loadPokemon() {
-      const pokemonIdRandom = Math.floor(Math.random() * pokeIds.length);
-      const pokemonId = pokeIds[pokemonIdRandom]
-      const { data } = await api.get(`pokemon/${pokemonId}`);
-
-      setPokemon({
-        id: data.id,
-        name: data.name,
-        image: data.sprites.front_default,
-      })
-    }
-
     loadPokemon()
   }, [])
 
@@ -56,6 +56,7 @@ export default function Who() {
           pokemonName={pokemon.name}
           points={points}
           setPoints={setPoints}
+          loadPokemon={loadPokemon}
         />
       </div>)
       }
