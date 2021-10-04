@@ -10,10 +10,15 @@ import YellowPart from "./YellowPart";
 import React, { useEffect, useState } from "react";
 import Modal, { BODY_ALERTS } from "../../components/Modal";
 
+type Pokemon = {
+  id: string
+  name: string
+  image: string
+}
 
 export default function Who() {
   const router = useRouter();
-  const [pokemon, setPokemon] = useState({})
+  const [pokemon, setPokemon] = useState<Pokemon>()
   const [points, setPoints] = useState(10)
 
   if (router.isFallback) {
