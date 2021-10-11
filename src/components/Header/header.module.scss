@@ -34,4 +34,8 @@
 				1.5px 1.5px 3px $primary-blue-light;
 		}
 	}
+
+	@media (max-width: 1169px) {
+    margin: 8px 0 0 8px;		
+  }
 }

@@ -3,6 +3,7 @@
 
 .letter {
   @include potta-one-regular-36-20;
+
   text-transform: uppercase;
   color: $primary-blue-dark;
   width: 60px;
@@ -21,5 +22,10 @@
     display: block;
     position: absolute;
     width: 40px;
+  }
+
+  @media (max-width: 1169px) {
+    font-size: 26px;
+    width: 35px;
   }
 }

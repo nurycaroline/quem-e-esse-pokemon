@@ -26,6 +26,22 @@
     background-position-y: center;
     margin: auto;
   }
+
+  @media (max-width: 1169px) {
+    min-width: none;
+    width: 100vw;
+
+    h1 {
+      top: 20px;
+      right: 24px;
+    }
+
+    .pokemon {
+      width: 200px;
+      height: 250px;
+      margin-top: 70px;
+    }
+  }
 }
 
 .yellowPart {
@@ -103,6 +119,7 @@
     }
 
   }
+
   .btPokeball {
     background-color: $auxiliary-gray-light;
     width: 60px;
@@ -129,6 +146,62 @@
       position: absolute;
       margin: -20px 0 0 30px;
       line-height: 25px;
+    }
+  }
+
+  @media (max-width: 1169px) {
+    position: absolute;
+    bottom: 0;
+    justify-content: space-between;
+    border-radius: 40px 40px 0 0;
+
+    .keyboard {
+      width: 100vw;
+      border-radius: 40px 40px 0 0;
+      height: 200px;
+    }
+
+    .heart {
+      width: 100px;
+      position: absolute;
+      bottom: 160px;
+      
+      span {
+        font-size: 45px;
+      }
+    }
+
+    .blocksName {
+      margin-top: 20px;
+      width: 100%;
+      margin-bottom: 60px;
+
+      p {
+        font-size: 26px;
+        width: 40px;
+        height: 50px;
+        line-height: 50px;
+        margin: 5px;
+      }
+    }
+
+    .btPokeball{
+      position: absolute;
+      margin-top: 90px;
+      right: 10px;
+      width: 45px;
+      height: 45px;
+
+      img {
+        width: 30px;
+        height: 30px;
+      }
+
+      span {
+        width: 15px;
+        height: 15px;
+      }
+
     }
   }
 }
