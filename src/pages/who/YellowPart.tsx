@@ -23,8 +23,6 @@ const YellowPart = ({ pokemonName, points, setPoints, loadPokemon, pokemonImageU
   const [showModalPokeballs, setShowModalPokeballs] = useState(false)
   const [showModalViewerPokemon, setShowModalViewerPokemon] = useState(false)
 
-  console.log(pokemonName)
-
   function nameHasLetter(letter) {
     if ([...pokemonName].includes(letter)) {
       setRightLetters([...rightLetters, letter])
