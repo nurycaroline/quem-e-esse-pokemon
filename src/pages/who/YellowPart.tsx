@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import LetterKeyboard from "../../components/LetterKeyboard";
 import Modal, { BODY_ALERTS } from "../../components/Modal";
-
 import styles from "./who.module.scss";
 
 interface YellowPartParams {
+  pokemonImageUrl: string;
   pokemonName: string;
   points: number
   setPoints(point: number): void
@@ -16,11 +16,14 @@ const lettersSecondLine = ["a", "s", "d", "f", "g", "h", "j", "k", "l"]
 const lettersThirdLine = ["z", "x", "c", "v", "b", "n", "m"]
 const lines = [lettersFirstLine, lettersSecondLine, lettersThirdLine]
 
-const YellowPart = ({ pokemonName, points, setPoints, loadPokemon }: YellowPartParams) => {
+const YellowPart = ({ pokemonName, points, setPoints, loadPokemon, pokemonImageUrl }: YellowPartParams) => {
   const [rightLetters, setRightLetters] = useState([])
   const [wrongLetters, setWrongLetters] = useState([])
   const [amountPokeballs, setAmountPokeballs] = useState(0)
   const [showModalPokeballs, setShowModalPokeballs] = useState(false)
+  const [showModalViewerPokemon, setShowModalViewerPokemon] = useState(false)
+
+  console.log(pokemonName)
 
   function nameHasLetter(letter) {
     if ([...pokemonName].includes(letter)) {
@@ -64,6 +67,7 @@ const YellowPart = ({ pokemonName, points, setPoints, loadPokemon }: YellowPartP
     const nameReplace = pokemonName ? pokemonName.replace(/-/g, '') : ''
     if (nameReplace && [...nameReplace].every(r => rightLetters.includes(r))) {
       setAmountPokeballs(amountPokeballs + 1)
+      setShowModalViewerPokemon(true)
       setShowModalPokeballs(true)
     }
 
@@ -107,6 +111,18 @@ const YellowPart = ({ pokemonName, points, setPoints, loadPokemon }: YellowPartP
         showModalPokeballs && (
           <Modal>
             {BODY_ALERTS.winPokeball(clean)}
+          </Modal>
+        )
+      }
+
+      {
+        showModalViewerPokemon && (
+          <Modal>
+            {BODY_ALERTS.viewerPokemon(
+              pokemonImageUrl,
+              pokemonName,
+              () => setShowModalViewerPokemon(false)
+            )}
           </Modal>
         )
       }

@@ -2,25 +2,46 @@
 @import "../../styles/fonts.scss";
 
 .background{
-	position: absolute;
+	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100vw;
 	height: 100vh;
-	background-color: $primary-blue-opacity;
+	background-color: $primary-blue-opacity;	
 }
 
 .modal {
 	width: 305px;
 	height: 385px;
 	background-color: $auxiliary-white;
-	position: absolute;
+	position: fixed;
 	top: 0;
 	left: 0;
 	right: 0;
 	margin: auto;
 	bottom: 0;
 	border-radius: 20px;
+}
+
+.viewerPokemon{
+	background: $gradients-gradient-02;
+	width: 100%;
+	height: 100%;
+	border-radius: 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	img {
+		width: 190px;
+	}
+
+	h2 {
+		@include open-sans-semibold-24px;
+		margin: 20px 0;
+		text-align: center;
+	}
 }
 
 .gameOver{

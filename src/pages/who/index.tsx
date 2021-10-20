@@ -49,16 +49,18 @@ export default function Who() {
 
       {
         pokemon && pokemon.id && (<div className={styles.who}>
-        <Header />
 
-        <BluePart id={pokemon.id} pokemonImage={pokemon.image} />
-        <YellowPart
-          pokemonName={pokemon.name}
-          points={points}
-          setPoints={setPoints}
-          loadPokemon={loadPokemon}
-        />
-      </div>)
+          <Header />
+
+          <BluePart id={pokemon.id} pokemonImage={pokemon.image} />
+          <YellowPart
+            pokemonName={pokemon.name}
+            points={points}
+            setPoints={setPoints}
+            loadPokemon={loadPokemon}
+            pokemonImageUrl={pokemon.image}
+          />
+        </div>)
       }
 
       {!points && <Modal>{BODY_ALERTS.gameOver}</Modal>}

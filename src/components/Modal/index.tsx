@@ -24,7 +24,15 @@ export const BODY_ALERTS = {
 				<a><Button onClick={callBack}>Continuar</Button></a>
 			</Link>
 		</div>
-	)
+	),
+	viewerPokemon: (pokemonImage, pokemonName, onClose) => (
+		<div className={styles.viewerPokemon}>
+			<img src={pokemonImage} alt="Logo" />
+			<h2>Você encontrou o <strong>{pokemonName}</strong>!</h2>
+
+			<Button onClick={onClose}>Continuar</Button>
+		</div >
+	),
 }
 
 const Modal: React.FC = ({ children }) => {
