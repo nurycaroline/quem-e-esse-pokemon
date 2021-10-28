@@ -61,14 +61,19 @@ const YellowPart = ({ pokemonName, points, setPoints, loadPokemon, pokemonImageU
     nameHasLetter(letterNotFound[0])
   }
 
+  const setLocalStorage = () => {
+    const pokemonsCaptured = JSON.parse(localStorage.getItem('@pokemonsCaptured')) || []
+    localStorage.setItem('@pokemonsCaptured', JSON.stringify([...pokemonsCaptured, pokemonName]))
+  }
+
   useEffect(() => {
     const nameReplace = pokemonName ? pokemonName.replace(/-/g, '') : ''
     if (nameReplace && [...nameReplace].every(r => rightLetters.includes(r))) {
       setAmountPokeballs(amountPokeballs + 1)
       setShowModalViewerPokemon(true)
       setShowModalPokeballs(true)
+      setLocalStorage()
     }
-
   }, [rightLetters])
 
   return (
