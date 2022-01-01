@@ -20,7 +20,7 @@ Layout completo: [Figma](https://www.figma.com/file/HcNw19Nw12iWdjALFWds9Y/1-Que
 ## Features
 
 - Captura de Pokémons acertando o nome
-- Pokedex com os Pokémons capturados
+
 
 ## Tecnologias
 
