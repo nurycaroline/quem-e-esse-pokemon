@@ -28,6 +28,8 @@ const POKEMON_TYPES = [
 
 export default function Pokedex() {
   const [filtersSelected, setFiltersSelecter] = useState<string[]>([])
+  const [pokemonsFiltered, setPokemonsFiltered] = useState([])
+  const [pokemonsList, setPokemons] = useState([])
 
   const loadPokemons = async () => {
     const pokemonsCaptured = JSON.parse(localStorage.getItem('@pokemonsCaptured')) || []
@@ -116,7 +118,7 @@ export default function Pokedex() {
     const pokemonsCapturedData = await Promise.all(pokemonsCaptured.map(async (name) => {
       const respPokemon = await getPokemonInfo(name)
       const pokemonData = respPokemon.data || {}
-      const evolutions = await getEvolutions(pokemonData)
+      const evolutions = []//await getEvolutions(pokemonData)
       const moves = await getMoves(pokemonData.moves)
 
       return {
@@ -146,7 +148,9 @@ export default function Pokedex() {
       };
     }))
 
-    console.log({ pokemonsCapturedData })
+    console.log(pokemonsCapturedData)
+    setPokemons(pokemonsCapturedData)
+    setPokemonsFiltered(pokemonsCapturedData)
   }
 
   const handleUpdateFiltersSelected = (type: string) => {
@@ -157,8 +161,20 @@ export default function Pokedex() {
   }
 
   useEffect(() => {
-    // loadPokemons()
+    loadPokemons()
   }, [])
+
+  useEffect(() => {
+    if (filtersSelected.length) {
+      setPokemonsFiltered(pokemonsList
+        .filter(p => p.types
+          .some(t => filtersSelected.includes(t))
+        )
+      )
+    } else {
+      setPokemonsFiltered(pokemonsList)
+    }
+  }, [filtersSelected])
 
   return (
     <div className={styles.page}>
@@ -187,6 +203,10 @@ export default function Pokedex() {
               </button>
             ))}
           </div>
+
+          {pokemonsFiltered.map((pokemon, i) => (
+            <div key={i}>{pokemon.name} - {JSON.stringify(pokemon.types)}</div>
+          ))}
         </section>
       </div>
     </div>
