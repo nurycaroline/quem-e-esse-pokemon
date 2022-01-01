@@ -18,7 +18,7 @@
 	h1 {
 		@include open-sans-regular-24px;
 		color: $auxiliary-white;
-		padding-top: 100px;
+		padding-top: 80px;
 	}
 }
 
@@ -45,7 +45,7 @@
 	justify-content: center;
 	margin-bottom: 20px;
 	overflow-y: auto;
-	height: calc(100vh - 300px);
+	height: calc(100vh - 250px);
 }
 
 .pokemon {
