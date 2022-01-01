@@ -203,7 +203,7 @@ export default function Pokedex() {
     <div className={styles.container}>
       <HeaderIcons />
       <section className={styles.section}>
-        <h1>Pokémons encontrados</h1>
+        <h1>Pokémons encontrados ({pokemonsList.length})</h1>
 
         <div className={styles.filter}>
           {POKEMON_TYPES.map(type => (

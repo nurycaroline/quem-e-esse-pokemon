@@ -63,7 +63,7 @@ const YellowPart = ({ pokemonName, points, setPoints, loadPokemon, pokemonImageU
 
   const setLocalStorage = () => {
     const pokemonsCaptured = JSON.parse(localStorage.getItem('@pokemonsCaptured')) || []
-    localStorage.setItem('@pokemonsCaptured', JSON.stringify([...pokemonsCaptured, pokemonName]))
+    localStorage.setItem('@pokemonsCaptured', JSON.stringify([...new Set([...pokemonsCaptured, pokemonName])]))
   }
 
   useEffect(() => {
