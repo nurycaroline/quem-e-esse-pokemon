@@ -22,10 +22,6 @@ Layout completo: [Figma](https://www.figma.com/file/HcNw19Nw12iWdjALFWds9Y/1-Que
 - Captura de Pokémons acertando o nome
 - Pokedex com os Pokémons capturados
 
-#### ***Em breve***
-
-- Desenvolvimento de Aplicativo para Android e IOS
-
 ## Tecnologias
 
 - [ReactJS](https://reactjs.org/)
