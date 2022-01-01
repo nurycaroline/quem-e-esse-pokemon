@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { api } from "../../services/api";
 import styles from './pokedex.module.scss'
 import HeaderIcons from '../../components/Header'
+import Loading from "../../components/Loading";
 
 const POKEMON_TYPES = [
   'bug',
@@ -270,9 +271,9 @@ export default function Pokedex() {
       <Head>
         <title>Pokédex</title>
       </Head>
-
+      
       {
-        loading ? <h1>Carregando...</h1> : renderContainter()
+        loading ? <Loading /> : renderContainter()
       }
     </div>
   );
