@@ -28,7 +28,7 @@ export const BODY_ALERTS = {
 	viewerPokemon: (pokemonImage, pokemonName, onClose) => (
 		<div className={styles.viewerPokemon}>
 			<img src={pokemonImage} alt="Logo" />
-			<h2>Você encontrou o <strong>{pokemonName}</strong>!</h2>
+			<h2>Você encontrou <p><strong>{pokemonName}</strong></p></h2>
 
 			<Button onClick={onClose}>Continuar</Button>
 		</div >
