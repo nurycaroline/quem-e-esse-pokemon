@@ -88,7 +88,6 @@ const YellowPart = ({ pokemonName, points, setPoints, loadPokemon, pokemonImageU
         <span>{points}</span>
       </div>
       <div className={styles.keyboard}>
-        {pokemonName}
         {
           lines.map((line, i) => (
             <div className={styles.lines} key={i}>
