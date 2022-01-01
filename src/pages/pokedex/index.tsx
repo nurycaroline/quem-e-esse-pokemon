@@ -1,9 +1,33 @@
-import { GetStaticProps } from "next";
 import Head from "next/head";
-import { useEffect } from "react";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 import { api } from "../../services/api";
+import styles from './pokedex.module.scss'
+import HeaderIcons from '../../components/Header'
+
+const POKEMON_TYPES = [
+  'bug',
+  'dark',
+  'dragon',
+  'electric',
+  'fairy',
+  'fighting',
+  'fire',
+  'flying',
+  'ghost',
+  'grass',
+  'ground',
+  'ice',
+  'normal',
+  'poison',
+  'psychic',
+  'rock',
+  'steel',
+  'water',
+]
 
 export default function Pokedex() {
+  const [filtersSelected, setFiltersSelecter] = useState<string[]>([])
 
   const loadPokemons = async () => {
     const pokemonsCaptured = JSON.parse(localStorage.getItem('@pokemonsCaptured')) || []
@@ -122,21 +146,48 @@ export default function Pokedex() {
       };
     }))
 
-    console.log(pokemonsCapturedData)
+    console.log({ pokemonsCapturedData })
+  }
+
+  const handleUpdateFiltersSelected = (type: string) => {
+    if (filtersSelected.includes(type)) {
+      return setFiltersSelecter(filtersSelected.filter(t => t !== type))
+    }
+    return setFiltersSelecter([...filtersSelected, type])
   }
 
   useEffect(() => {
-    loadPokemons()
+    // loadPokemons()
   }, [])
 
   return (
-    <div>
+    <div className={styles.page}>
       <Head>
-        <title>Pokedex 🚧</title>
+        <title>Pokédex</title>
       </Head>
 
-      <div>
-        <h1>Pokedex 🚧</h1>
+      <div className={styles.container}>
+        <HeaderIcons />
+        <section className={styles.section}>
+          <h1>Pokémons encontrados</h1>
+
+          <div className={styles.filter}>
+            {POKEMON_TYPES.map(type => (
+              <button
+                key={type}
+                className={filtersSelected.includes(type) ? styles[type] : ''}
+                onClick={() => handleUpdateFiltersSelected(type)}
+              >
+                <Image
+                  src={`/types/${type}.svg`}
+                  alt={type}
+                  width={25}
+                  height={25}
+                />
+              </button>
+            ))}
+          </div>
+        </section>
       </div>
     </div>
   );
