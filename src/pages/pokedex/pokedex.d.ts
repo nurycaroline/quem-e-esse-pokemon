@@ -9,6 +9,7 @@ namespace PokedexTypes {
 		accuracy: string
 		power: string
 		pointsPower: string
+		type: string
 	}
 	export type PokemonEvolution = {
 		id: string

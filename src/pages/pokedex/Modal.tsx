@@ -180,7 +180,24 @@ const Modal = ({ data, onClose }: ModalPokedex) => {
 						)}
 						{tabSelected === 'moves' && (
 							<div className={styles.tabMoves}>
-
+								{
+									data.moves.map(move => (
+										<div key={move.name} className={styles.move}>
+											<p>
+												<Image
+													src={`/types-color/${move.type}.svg`}
+													alt={move.type}
+													width={25}
+													height={25}
+												/>
+												<strong>{move.name}</strong>
+											</p>
+											<p>Precisão: 100 </p>
+											<p>Poder: 80 </p>
+											<p>Pontos de Poder: 10 </p>
+										</div>
+									))
+								}
 							</div>
 						)}
 					</div>

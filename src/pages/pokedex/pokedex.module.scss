@@ -169,7 +169,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		height: 140px;
+		height: 240px;
 	}
 
 	.types {
@@ -337,10 +337,14 @@
 			@include open-sans-regular-16px;
 			color: $auxiliary-black;
 
-			.evolutions{
+			.evolutions {
 				display: flex;
 				justify-content: space-evenly;
 				align-items: center;
+
+				.evolution p {
+					text-align: center
+				}
 			}
 		}
 
@@ -354,7 +358,30 @@
 		}
 
 		.tabMoves {
+			overflow-y: auto;
+			height: 320px;
+			
+			.move {
+				p:nth-child(1){
+					@include open-sans-bold-16px;
+					text-transform: capitalize;
+					display: flex;
+					align-items: center;
+					margin-left: 0;
+					margin-top: 15px;
+					margin-bottom: 5px;
 
+					strong {
+						margin-left: 5px;
+					}
+				}
+
+				p {
+					@include open-sans-regular-16px;
+					margin-left: 30px;
+					margin-bottom: 2px;
+				}
+			}
 		}
 
 	}

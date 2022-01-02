@@ -114,7 +114,7 @@ export default function Pokedex() {
         evolutionOne,
         evolutionTwo,
         evolutionThree,
-      ]
+      ].filter(x => x)
     }
 
     const getMoves = async (moves) => {
@@ -129,7 +129,8 @@ export default function Pokedex() {
             name: dataMove.name,
             accuracy: dataMove.accuracy,
             power: dataMove.power,
-            pointsPower: dataMove.pp
+            pointsPower: dataMove.pp,
+            type: dataMove.type.name
           }
           return move
         })
