@@ -1,7 +1,11 @@
 namespace PokedexTypes {
 	export type PokemonStats = {
-		name: string
-		value: string
+		attack: number
+		defense: number
+		hp: number
+		'special-attack': number
+		'special-defense': number
+		speed: number
 	} 
 	export type PokemonMovement = {
 		id: string
@@ -38,7 +42,7 @@ namespace PokedexTypes {
 		height: string
 		base_experience: string
 		evolutions: PokemonEvolution[]
-		stats: PokemonStats[]
+		stats: PokemonStats
 		moves: PokemonMovement[]
 	}
 }

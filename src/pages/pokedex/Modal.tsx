@@ -154,27 +154,27 @@ const Modal = ({ data, onClose }: ModalPokedex) => {
 							<div className={styles.tabStatistics}>
 								<p>
 									<Image src="/hp.svg" alt="HP" width={25} height={25} />
-									HP: <strong>45</strong>
+									HP: <strong>{data.stats.hp}</strong>
 								</p>
 								<p>
 									<Image src="/attack.svg" alt="Ataque" width={25} height={25} />
-									Ataque: <strong>49</strong>
+									Ataque: <strong>{data.stats.attack}</strong>
 								</p>
 								<p>
 									<Image src="/defense.svg" alt="Defesa" width={25} height={25} />
-									Defesa: <strong>49</strong>
+									Defesa: <strong>{data.stats.defense}</strong>
 								</p>
 								<p>
 									<Image src="/specialAttack.svg" alt="Ataque especial" width={25} height={25} />
-									Ataque especial: <strong>65</strong>
+									Ataque especial: <strong>{data.stats['special-attack']}</strong>
 								</p>
 								<p>
 									<Image src="/specialDefense.svg" alt="Defesa especial" width={25} height={25} />
-									Defesa especial: <strong>65</strong>
+									Defesa especial: <strong>{data.stats['special-defense']}</strong>
 								</p>
 								<p>
 									<Image src="/speed.svg" alt="Velocidade" width={25} height={25} />
-									Velocidade: <strong>45</strong>
+									Velocidade: <strong>{data.stats.speed}</strong>
 								</p>
 							</div>
 						)}
@@ -192,9 +192,9 @@ const Modal = ({ data, onClose }: ModalPokedex) => {
 												/>
 												<strong>{move.name}</strong>
 											</p>
-											<p>Precisão: 100 </p>
-											<p>Poder: 80 </p>
-											<p>Pontos de Poder: 10 </p>
+											<p>Precisão: {move.accuracy}</p>
+											<p>Poder: {move.power}</p>
+											<p>Pontos de Poder: {move.pointsPower}</p>
 										</div>
 									))
 								}

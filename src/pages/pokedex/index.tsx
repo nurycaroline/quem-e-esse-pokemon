@@ -165,7 +165,7 @@ export default function Pokedex() {
           height: respPokemon.height,
           base_experience: respPokemon.base_experience,
           evolutions,
-          stats: respPokemon.stats.map(s => ({ value: s.base_stat, name: s.stat.name })),
+          stats: respPokemon.stats.reduce((prev, curr) => ({ ...prev, [curr.stat.name]: curr.base_stat }), {}),
           moves
         };
       }))
