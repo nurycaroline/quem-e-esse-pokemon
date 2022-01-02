@@ -349,7 +349,7 @@
 		}
 
 		.tabStatistics {
-			p {
+			> div {
 				@include open-sans-regular-16px;
 				display: flex;
 				gap: 10px;
@@ -362,7 +362,7 @@
 			height: 320px;
 			
 			.move {
-				p:nth-child(1){
+				> div {
 					@include open-sans-bold-16px;
 					text-transform: capitalize;
 					display: flex;

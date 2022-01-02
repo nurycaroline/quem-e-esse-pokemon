@@ -177,30 +177,30 @@ const Modal = ({ data, onClose }: ModalPokedex) => {
 						)}
 						{tabSelected === 'statistics' && (
 							<div className={styles.tabStatistics}>
-								<p>
+								<div>
 									<Image src="/hp.svg" alt="HP" width={25} height={25} />
 									HP: <strong>{data.stats.hp}</strong>
-								</p>
-								<p>
+								</div>
+								<div>
 									<Image src="/attack.svg" alt="Ataque" width={25} height={25} />
 									Ataque: <strong>{data.stats.attack}</strong>
-								</p>
-								<p>
+								</div>
+								<div>
 									<Image src="/defense.svg" alt="Defesa" width={25} height={25} />
 									Defesa: <strong>{data.stats.defense}</strong>
-								</p>
-								<p>
+								</div>
+								<div>
 									<Image src="/specialAttack.svg" alt="Ataque especial" width={25} height={25} />
 									Ataque especial: <strong>{data.stats['special-attack']}</strong>
-								</p>
-								<p>
+								</div>
+								<div>
 									<Image src="/specialDefense.svg" alt="Defesa especial" width={25} height={25} />
 									Defesa especial: <strong>{data.stats['special-defense']}</strong>
-								</p>
-								<p>
+								</div>
+								<div>
 									<Image src="/speed.svg" alt="Velocidade" width={25} height={25} />
 									Velocidade: <strong>{data.stats.speed}</strong>
-								</p>
+								</div>
 							</div>
 						)}
 						{tabSelected === 'moves' && (
@@ -208,7 +208,7 @@ const Modal = ({ data, onClose }: ModalPokedex) => {
 								{
 									data.moves.map(move => (
 										<div key={move.name} className={styles.move}>
-											<p>
+											<div>
 												<Image
 													src={`/types-color/${move.type}.svg`}
 													alt={move.type}
@@ -216,7 +216,7 @@ const Modal = ({ data, onClose }: ModalPokedex) => {
 													height={25}
 												/>
 												<strong>{move.name}</strong>
-											</p>
+											</div>
 											<p>Precisão: {move.accuracy}</p>
 											<p>Poder: {move.power}</p>
 											<p>Pontos de Poder: {move.pointsPower}</p>
