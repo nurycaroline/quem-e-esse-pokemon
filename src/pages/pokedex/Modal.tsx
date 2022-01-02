@@ -15,6 +15,31 @@ const Modal = ({ data, onClose }: ModalPokedex) => {
 		color: 'rgba(4, 18, 88, 1)',
 		borderBottom: '1px solid rgba(4, 18, 88, 1)'
 	}
+	const [image, setImage] = useState(data.images.male.front)
+	const [shiny, setShiny] = useState(false)
+	const [gender, setGender] = useState('male')
+	const [position, setPosition] = useState('front')
+
+	const handleShiny = (typeShiny) => {
+		if (data.images[gender][typeShiny ? `${position}Shine`: position]) {
+			setImage(data.images[gender][typeShiny ? `${position}Shine`: position])
+			setShiny(typeShiny)
+		}
+	}
+
+	const handleGender = (typeGender) => {
+		if (data.images[typeGender][position]) {
+			setImage(data.images[typeGender][position])
+			setGender(typeGender)
+		}
+	}
+
+	const handlePosition = (typePosition) => {
+		if (data.images[gender][shiny ? `${typePosition}Shine` : typePosition]) {
+			setImage(data.images[gender][shiny ? `${typePosition}Shine` : typePosition])
+			setPosition(typePosition)
+		}
+	}
 
 	return (
 		<div className={styles.modalContainer}>
@@ -27,7 +52,7 @@ const Modal = ({ data, onClose }: ModalPokedex) => {
 				</button>
 				<div className={styles.image}>
 					<Image
-						src={data?.images.male.front}
+						src={image}
 						alt={data?.name}
 						width={200}
 						height={200}
@@ -54,7 +79,7 @@ const Modal = ({ data, onClose }: ModalPokedex) => {
 
 					<div className={styles.buttons}>
 						<div>
-							<button>
+							<button onClick={() => handleGender('female')}>
 								<Image
 									src="/female.svg"
 									alt="female"
@@ -62,7 +87,7 @@ const Modal = ({ data, onClose }: ModalPokedex) => {
 									height={12}
 								/>
 							</button>
-							<button>
+							<button onClick={() => handleGender('male')}>
 								<Image
 									src="/male.svg"
 									alt="male"
@@ -71,9 +96,9 @@ const Modal = ({ data, onClose }: ModalPokedex) => {
 								/>
 							</button>
 						</div>
-						<button>SHINY</button>
+						<button onClick={() => handleShiny(!shiny)}>SHINY</button>
 						<div>
-							<button>
+							<button onClick={() => handlePosition('back')}>
 								<Image
 									src="/back.svg"
 									alt="back"
@@ -81,7 +106,7 @@ const Modal = ({ data, onClose }: ModalPokedex) => {
 									height={12}
 								/>
 							</button>
-							<button>
+							<button onClick={() => handlePosition('front')}>
 								<Image
 									src="/front.svg"
 									alt="front"

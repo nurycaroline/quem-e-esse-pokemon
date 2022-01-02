@@ -150,8 +150,8 @@ export default function Pokedex() {
             male: {
               front: respPokemon.sprites.front_default,
               back: respPokemon.sprites.back_default,
-              frontShine: respPokemon.sprites.back_shiny,
-              backShine: respPokemon.sprites.front_shiny
+              frontShine: respPokemon.sprites.front_shiny,
+              backShine: respPokemon.sprites.back_shiny
             },
             female: {
               front: respPokemon.sprites.front_female,
