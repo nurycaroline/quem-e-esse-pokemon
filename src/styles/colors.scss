@@ -39,6 +39,25 @@ $types-rock: rgba(139, 206, 193, 1);
 $types-steel: rgba(101, 148, 161, 1);
 $types-water: rgba(100, 156, 218, 1);
 
+$types-bug-opacity: rgba(155, 186, 72, 0.1);
+$types-dark-opacity: rgba(89, 87, 97, 0.1);
+$types-dragon-opacity: rgba(44, 106, 193, 0.1);
+$types-electric-opacity: rgba(238, 217, 103, 0.1);
+$types-fairy-opacity: rgba(226, 150, 225, 0.1);
+$types-fighting-opacity: rgba(196, 77, 97, 0.1);
+$types-fire-opacity: rgba(239, 169, 93, 0.1);
+$types-flying-opacity: rgba(166, 187, 232, 0.1);
+$types-ghost-opacity: rgba(97, 110, 183, 0.1);
+$types-grass-opacity: rgba(120, 186, 100, 0.1);
+$types-ground-opacity: rgba(206, 128, 86, 0.1);
+$types-ice-opacity: rgba(139, 206, 193, 0.1);
+$types-normal-opacity: rgba(160, 162, 159, 0.1);
+$types-poison-opacity: rgba(172, 106, 202, 0.1);
+$types-psychic-opacity: rgba(235, 139, 133, 0.1);
+$types-rock-opacity: rgba(139, 206, 193, 0.1);
+$types-steel-opacity: rgba(101, 148, 161, 0.1);
+$types-water-opacity: rgba(100, 156, 218, 0.1);
+
 $gradients-gradient-01: url("/bg-pattern.svg"),
   linear-gradient(180deg, $primary-blue 0%, #143685 100%);
 

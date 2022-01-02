@@ -4,6 +4,9 @@ import { useEffect, useState } from "react";
 import { api } from "../../services/api";
 import styles from './pokedex.module.scss'
 import HeaderIcons from '../../components/Header'
+import Loading from "../../components/Loading";
+import Modal from "../../components/ModalPokemon";
+import { Pokemon } from "../../../types/pokedeTypes";
 
 const POKEMON_TYPES = [
   'bug',
@@ -26,7 +29,7 @@ const POKEMON_TYPES = [
   'water',
 ]
 
-const POKEMONS_TYPES_COLORS = {
+export const POKEMONS_TYPES_COLORS = {
   bug: 'rgba(155, 186, 72, 1)',
   dark: 'rgba(89, 87, 97, 1)',
   dragon: 'rgba(44, 106, 193, 1)',
@@ -50,72 +53,68 @@ const POKEMONS_TYPES_COLORS = {
 export default function Pokedex() {
   const [filtersSelected, setFiltersSelecter] = useState<string[]>([])
   const [pokemonsFiltered, setPokemonsFiltered] = useState([])
-  const [pokemonsList, setPokemons] = useState([])
+  const [pokemonsList, setPokemonsList] = useState([])
   const [loading, setLoading] = useState(true)
+  const [showModal, setShowModal] = useState(false)
+  const [pokemonSelected, setPokemonSelected] = useState<Pokemon>()
 
   const loadPokemons = async () => {
     const pokemonsCaptured = JSON.parse(localStorage.getItem('@pokemonsCaptured')) || []
 
     const getPokemonInfo = async (name) => {
-      return await api.get(`pokemon/${name}`);
+      const repPokemon = await api.get(`pokemon/${name}`);
+      return repPokemon.data
     }
 
-    const getEvolutionChain = async (id) => {
-      const respEvolution = await api.get(`evolution-chain/${id}`)
-      if (respEvolution.data?.chain.evolves_to[0]) {
-        const specieName = respEvolution.data?.chain.evolves_to[0]?.species.name
-        const respPokemonInfo = await getPokemonInfo(specieName)
-        return respPokemonInfo?.data
-      }
-      return null
+    const getSpecies = async (id: string) => {
+      const respSpecies = await api.get(`pokemon-species/${id}`);
+      return respSpecies.data
+    }
+
+    const getEvolutionChain = async (urlChain: string) => {
+      const respEvolution = await api.get(urlChain)
+      return respEvolution.data.chain
     }
 
     const getEvolutions = async (pokemonData) => {
+      const speciesPokeData = await getSpecies(pokemonData.id)
+      const chainPokeData = await getEvolutionChain(speciesPokeData.evolution_chain?.url)
+      const pokemonOrigem = await getPokemonInfo(chainPokeData.species.name)
+      const species = await getSpecies(pokemonOrigem.id)
+      const chain = await getEvolutionChain(species.evolution_chain?.url)
+
       let evolutionOne = null
       let evolutionTwo = null
       let evolutionThree = null
 
-      try {
-        if (pokemonData?.is_default) {
-          evolutionOne = await getEvolutionChain(pokemonData.id)
-
-          if (evolutionOne) {
-            evolutionOne = {
-              id: evolutionOne.id,
-              nome: evolutionOne.name,
-              image: evolutionOne.sprites.front_default
-            }
-
-            evolutionTwo = await getEvolutionChain(evolutionOne.id)
-
-            if (evolutionTwo) {
-              evolutionTwo = {
-                id: evolutionTwo.id,
-                nome: evolutionTwo.name,
-                image: evolutionTwo.sprites.front_default
-              }
-
-              evolutionThree = await getEvolutionChain(evolutionTwo.id)
-
-              if (evolutionThree) {
-                evolutionThree = {
-                  id: evolutionThree.id,
-                  nome: evolutionThree.name,
-                  image: evolutionThree.sprites.front_default
-                }
-              }
-            }
-          }
-        }
-      } catch (error) {
-
+      evolutionOne = {
+        id: pokemonOrigem.id,
+        name: pokemonOrigem.name,
+        image: pokemonOrigem.sprites.front_default
       }
 
-      return {
+      const respTwo = chain.evolves_to[0]?.species.name && await getPokemonInfo(chain.evolves_to[0].species.name)
+      if (respTwo?.id) {
+        evolutionTwo = {
+          id: respTwo.id,
+          name: respTwo.name,
+          image: respTwo.sprites.front_default
+        }
+      }
+      const respThree = chain.evolves_to[0]?.evolves_to[0]?.species.name && await getPokemonInfo(chain.evolves_to[0].evolves_to[0].species.name)
+      if (respThree?.id) {
+        evolutionThree = {
+          id: respThree.id,
+          name: respThree.name,
+          image: respThree.sprites.front_default
+        }
+      }
+
+      return [
         evolutionOne,
         evolutionTwo,
         evolutionThree,
-      }
+      ].filter(x => x)
     }
 
     const getMoves = async (moves) => {
@@ -130,48 +129,48 @@ export default function Pokedex() {
             name: dataMove.name,
             accuracy: dataMove.accuracy,
             power: dataMove.power,
-            pointsPower: dataMove.pp
+            pointsPower: dataMove.pp,
+            type: dataMove.type.name
           }
           return move
         })
       )
     }
 
-    const pokemonsCapturedData = await Promise.all(pokemonsCaptured.map(async (name) => {
-      const respPokemon = await getPokemonInfo(name)
-      const pokemonData = respPokemon.data || {}
-      const evolutions = []//await getEvolutions(pokemonData)
-      const moves = await getMoves(pokemonData.moves)
+    const pokemonsCapturedData = await Promise.all(
+      pokemonsCaptured.map(async (name) => {
+        const respPokemon = await getPokemonInfo(name)
+        const evolutions = await getEvolutions(respPokemon)
+        const moves = await getMoves(respPokemon.moves)
 
-      return {
-        id: pokemonData.id,
-        name: pokemonData.name,
-        images: {
-          male: {
-            front: pokemonData.sprites.front_default,
-            back: pokemonData.sprites.back_default,
-            frontShine: pokemonData.sprites.back_shiny,
-            backShine: pokemonData.sprites.front_shiny
+        return {
+          id: respPokemon.id,
+          name: respPokemon.name,
+          images: {
+            male: {
+              front: respPokemon.sprites.front_default,
+              back: respPokemon.sprites.back_default,
+              frontShine: respPokemon.sprites.front_shiny,
+              backShine: respPokemon.sprites.back_shiny
+            },
+            female: {
+              front: respPokemon.sprites.front_female,
+              back: respPokemon.sprites.back_female,
+              frontShine: respPokemon.sprites.front_shiny_female,
+              backShine: respPokemon.sprites.back_shiny_female
+            },
           },
-          female: {
-            front: pokemonData.sprites.front_female,
-            back: pokemonData.sprites.back_female,
-            frontShine: pokemonData.sprites.front_shiny_female,
-            backShine: pokemonData.sprites.back_shiny_female
-          },
-        },
-        types: pokemonData.types.map(t => t.type.name),
-        weight: pokemonData.weight,
-        height: pokemonData.height,
-        base_experience: pokemonData.base_experience,
-        evolutions,
-        stats: pokemonData.stats.map(s => ({ value: s.base_stat, name: s.stat.name })),
-        moves
-      };
-    }))
+          types: respPokemon.types.map(t => t.type.name),
+          weight: respPokemon.weight,
+          height: respPokemon.height,
+          base_experience: respPokemon.base_experience,
+          evolutions,
+          stats: respPokemon.stats.reduce((prev, curr) => ({ ...prev, [curr.stat.name]: curr.base_stat }), {}),
+          moves
+        };
+      }))
 
-    console.log(pokemonsCapturedData)
-    setPokemons(pokemonsCapturedData)
+    setPokemonsList(pokemonsCapturedData)
     setPokemonsFiltered(pokemonsCapturedData)
     setLoading(false)
   }
@@ -181,6 +180,11 @@ export default function Pokedex() {
       return setFiltersSelecter(filtersSelected.filter(t => t !== type))
     }
     return setFiltersSelecter([...filtersSelected, type])
+  }
+
+  const handleClickPokemon = (pokemon: Pokemon) => {
+    setPokemonSelected(pokemon)
+    setShowModal(true)
   }
 
   useEffect(() => {
@@ -224,7 +228,7 @@ export default function Pokedex() {
 
         <div className={styles.pokemons}>
           {pokemonsFiltered.map((pokemon, i) => (
-            <div key={i} className={styles.pokemon}>
+            <div key={i} className={styles.pokemon} onClick={() => handleClickPokemon(pokemon)}>
               <div className={`${styles[pokemon.types[0]]} ${styles.pokemonId}`}>#{pokemon.id}</div>
               <div className={`${styles.pokemonInfo}`}
                 style={{
@@ -272,7 +276,14 @@ export default function Pokedex() {
       </Head>
 
       {
-        loading ? <h1>Carregando...</h1> : renderContainter()
+        loading ? <Loading /> : renderContainter()
+      }
+
+      {
+        showModal && <Modal
+          data={pokemonSelected}
+          onClose={() => setShowModal(false)}
+        />
       }
     </div>
   );
