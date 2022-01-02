@@ -19,7 +19,7 @@ type Pokemon = {
 export default function Who() {
   const router = useRouter();
   const [pokemon, setPokemon] = useState<Pokemon>()
-  const [points, setPoints] = useState(10)
+  const [points, setPoints] = useState(30)
 
   if (router.isFallback) {
     return <p>Carregando...</p>;
