@@ -118,3 +118,196 @@
 .rock { background-color: $types-rock !important; }
 .steel { background-color: $types-steel !important; }
 .water { background-color: $types-water !important; }
+
+.modalContainer {
+	background-color: $primary-blue-opacity;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 10;
+}
+
+.modalBody {
+	background-color: $auxiliary-white;
+	width: 100%;
+	max-width: 600px;
+	height: 100%;
+	max-height: 760px;
+	overflow-y: auto;
+	border-radius: 20px;
+
+	.button {
+		position: absolute;
+    z-index: 12;
+    margin-left: 20px;
+    margin-top: -20px;
+		width: 40px;
+		height: 40px;
+		text-align: right;
+		width: 100%;
+    max-width: 600px;
+		display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+
+		div {
+			@include potta-one-regular-24px;
+			background-color: $auxiliary-white;
+			text-align: center;
+			width: 40px;
+			height: 40px;
+			border-radius: 50%;
+		}
+	}
+
+	.image {
+		background: $gradients-gradient-02;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 140px;
+	}
+
+	.types {
+		display: flex;
+    align-items: center;
+    justify-content: center;
+		gap: 5px;
+
+		.type {
+			display: flex;
+			align-items: center;
+			padding: 5px 10px;
+			border-radius: 16px;
+			gap: 5px;
+			text-transform: capitalize;
+		}
+
+
+		.bug { 
+			color: $types-bug; 
+			border: 1px solid $types-bug; 
+			background-color: $types-bug-opacity !important; 
+		}
+		.dark { 
+			color: $types-dark; 
+			border: 1px solid $types-dark; 
+			background-color: $types-dark-opacity !important; 
+		}
+		.dragon { 
+			color: $types-dragon; 
+			border: 1px solid $types-dragon; 
+			background-color: $types-dragon-opacity !important; 
+		}
+		.electric { 
+			color: $types-electric; 
+			border: 1px solid $types-electric; 
+			background-color: $types-electric-opacity !important; 
+		}
+		.fairy { 
+			color: $types-fairy; 
+			border: 1px solid $types-fairy; 
+			background-color: $types-fairy-opacity !important; 
+		}
+		.fighting { 
+			color: $types-fighting; 
+			border: 1px solid $types-fighting; 
+			background-color: $types-fighting-opacity !important; 
+		}
+		.fire { 
+			color: $types-fire; 
+			border: 1px solid $types-fire; 
+			background-color: $types-fire-opacity !important; 
+		}
+		.flying { 
+			color: $types-flying; 
+			border: 1px solid $types-flying; 
+			background-color: $types-flying-opacity !important; 
+		}
+		.ghost { 
+			color: $types-ghost; 
+			border: 1px solid $types-ghost; 
+			background-color: $types-ghost-opacity !important; 
+		}
+		.grass { 
+			color: $types-grass; 
+			border: 1px solid $types-grass; 
+			background-color: $types-grass-opacity !important; 
+		}
+		.ground { 
+			color: $types-ground; 
+			border: 1px solid $types-ground; 
+			background-color: $types-ground-opacity !important; 
+		}
+		.ice { 
+			color: $types-ice; 
+			border: 1px solid $types-ice; 
+			background-color: $types-ice-opacity !important; 
+		}
+		.normal { 
+			color: $types-normal; 
+			border: 1px solid $types-normal; 
+			background-color: $types-normal-opacity !important; 
+		}
+		.poison { 
+			color: $types-poison; 
+			border: 1px solid $types-poison; 
+			background-color: $types-poison-opacity !important; 
+		}
+		.psychic { 
+			color: $types-psychic; 
+			border: 1px solid $types-psychic; 
+			background-color: $types-psychic-opacity !important; 
+		}
+		.rock { 
+			color: $types-rock; 
+			border: 1px solid $types-rock; 
+			background-color: $types-rock-opacity !important; 
+		}
+		.steel { 
+			color: $types-steel; 
+			border: 1px solid $types-steel; 
+			background-color: $types-steel-opacity !important; 
+		}
+		.water { 
+			color: $types-water; 
+			border: 1px solid $types-water; 
+			background-color: $types-water-opacity !important; 
+		}
+
+	}
+
+	h1 {
+		@include potta-one-regular-24px;
+		color: $auxiliary-black;
+		text-transform: capitalize;
+	}
+
+	.buttons {
+		display: flex;
+		justify-content: space-around;
+
+		button {
+			border-radius: 15px;
+			padding: 5px 10px;
+			background-color: $auxiliary-white;
+			box-shadow: -1px -1px 3px #FFFFFF, 1.5px 1.5px 3px rgba(174, 174, 192, 0.4);
+		}
+
+		div > button {
+			margin-right: 5px;
+		}
+
+		> button {
+			@include open-sans-bold-12px;
+			width: 130px;
+			color: $primary-blue-dark;
+			text-align: center;
+		}
+		
+	}
+}
