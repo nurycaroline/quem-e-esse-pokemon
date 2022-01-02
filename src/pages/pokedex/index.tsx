@@ -5,8 +5,8 @@ import { api } from "../../services/api";
 import styles from './pokedex.module.scss'
 import HeaderIcons from '../../components/Header'
 import Loading from "../../components/Loading";
-import PokedexTypes from "./pokedex";
-import Modal from "./Modal";
+import Modal from "../../components/ModalPokemon";
+import { Pokemon } from "../../../types/pokedeTypes";
 
 const POKEMON_TYPES = [
   'bug',
@@ -56,7 +56,7 @@ export default function Pokedex() {
   const [pokemonsList, setPokemonsList] = useState([])
   const [loading, setLoading] = useState(true)
   const [showModal, setShowModal] = useState(false)
-  const [pokemonSelected, setPokemonSelected] = useState<PokedexTypes.Pokemon>()
+  const [pokemonSelected, setPokemonSelected] = useState<Pokemon>()
 
   const loadPokemons = async () => {
     const pokemonsCaptured = JSON.parse(localStorage.getItem('@pokemonsCaptured')) || []
@@ -182,7 +182,7 @@ export default function Pokedex() {
     return setFiltersSelecter([...filtersSelected, type])
   }
 
-  const handleClickPokemon = (pokemon: PokedexTypes.Pokemon) => {
+  const handleClickPokemon = (pokemon: Pokemon) => {
     setPokemonSelected(pokemon)
     setShowModal(true)
   }

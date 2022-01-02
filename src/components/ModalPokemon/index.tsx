@@ -1,11 +1,11 @@
 import React, { Fragment, useState } from 'react';
 import Image from 'next/image'
-import PokedexTypes from "./pokedex";
-import styles from './pokedex.module.scss'
-import { POKEMONS_TYPES_COLORS } from '.';
+import styles from './modalPokemon.module.scss'
+import { POKEMONS_TYPES_COLORS } from '../../pages/pokedex';
+import { Pokemon } from '../../../types/pokedeTypes';
 
 type ModalPokedex = {
-	data: PokedexTypes.Pokemon
+	data: Pokemon
 	onClose(): void
 }
 
