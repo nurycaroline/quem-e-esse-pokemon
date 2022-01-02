@@ -53,7 +53,7 @@ export const POKEMONS_TYPES_COLORS = {
 export default function Pokedex() {
   const [filtersSelected, setFiltersSelecter] = useState<string[]>([])
   const [pokemonsFiltered, setPokemonsFiltered] = useState([])
-  const [pokemonsList, setPokemons] = useState<PokedexTypes.Pokemon[]>([])
+  const [pokemonsList, setPokemonsList] = useState([])
   const [loading, setLoading] = useState(true)
   const [showModal, setShowModal] = useState(false)
   const [pokemonSelected, setPokemonSelected] = useState<PokedexTypes.Pokemon>()
@@ -170,7 +170,7 @@ export default function Pokedex() {
         };
       }))
 
-    setPokemons(pokemonsCapturedData)
+    setPokemonsList(pokemonsCapturedData)
     setPokemonsFiltered(pokemonsCapturedData)
     setLoading(false)
   }
