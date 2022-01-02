@@ -110,11 +110,11 @@ export default function Pokedex() {
         }
       }
 
-      return {
+      return [
         evolutionOne,
         evolutionTwo,
         evolutionThree,
-      }
+      ]
     }
 
     const getMoves = async (moves) => {

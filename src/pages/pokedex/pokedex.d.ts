@@ -36,11 +36,7 @@ namespace PokedexTypes {
 		weight: string
 		height: string
 		base_experience: string
-		evolutions: {
-			evolutionOne: PokemonEvolution
-			evolutionTwo: PokemonEvolution
-			evolutionThree: PokemonEvolution
-		}
+		evolutions: PokemonEvolution[]
 		stats: PokemonStats[]
 		moves: PokemonMovement[]
 	}

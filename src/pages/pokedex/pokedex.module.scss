@@ -281,6 +281,10 @@
 
 	}
 
+	.infos {
+		padding: 0 20px;
+	}
+
 	h1 {
 		@include potta-one-regular-24px;
 		color: $auxiliary-black;
@@ -289,11 +293,13 @@
 
 	.buttons {
 		display: flex;
-		justify-content: space-around;
+		justify-content: space-between;
+		margin-top: 15px;
 
 		button {
+			width: 30px;
+			height: 30px;
 			border-radius: 15px;
-			padding: 5px 10px;
 			background-color: $auxiliary-white;
 			box-shadow: -1px -1px 3px #FFFFFF, 1.5px 1.5px 3px rgba(174, 174, 192, 0.4);
 		}
@@ -307,7 +313,49 @@
 			width: 130px;
 			color: $primary-blue-dark;
 			text-align: center;
+			height: 30px;
 		}
 		
+	}
+
+	.tabs {
+		margin-top: 20px;
+
+		.tabsHeader {
+			display: flex;
+			justify-content: flex-start;
+			gap: 30px;
+			margin-bottom: 20px;
+
+			button {
+				color: $auxiliary-gray;
+				@include open-sans-semibold-16px;
+			}
+		}
+
+		.tabAbout {
+			@include open-sans-regular-16px;
+			color: $auxiliary-black;
+
+			.evolutions{
+				display: flex;
+				justify-content: space-evenly;
+				align-items: center;
+			}
+		}
+
+		.tabStatistics {
+			p {
+				@include open-sans-regular-16px;
+				display: flex;
+				gap: 10px;
+				margin-bottom: 10px;
+			}
+		}
+
+		.tabMoves {
+
+		}
+
 	}
 }
