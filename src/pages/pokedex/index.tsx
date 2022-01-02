@@ -170,7 +170,6 @@ export default function Pokedex() {
         };
       }))
 
-    console.log(pokemonsCapturedData)
     setPokemons(pokemonsCapturedData)
     setPokemonsFiltered(pokemonsCapturedData)
     setLoading(false)
