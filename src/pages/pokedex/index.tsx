@@ -58,14 +58,12 @@ export default function Pokedex() {
   const [showModal, setShowModal] = useState(false)
   const [pokemonSelected, setPokemonSelected] = useState<Pokemon>()
 
-  const loadPokemons = async () => {
-    const pokemonsCaptured = JSON.parse(localStorage.getItem('@pokemonsCaptured')) || []
+  const getPokemonInfo = async (name) => {
+    const repPokemon = await api.get(`pokemon/${name}`);
+    return repPokemon.data
+  }
 
-    const getPokemonInfo = async (name) => {
-      const repPokemon = await api.get(`pokemon/${name}`);
-      return repPokemon.data
-    }
-
+  const getPokemonCompleteInfo = async (pokemonName) => {
     const getSpecies = async (id: string) => {
       const respSpecies = await api.get(`pokemon-species/${id}`);
       return respSpecies.data
@@ -137,11 +135,43 @@ export default function Pokedex() {
       )
     }
 
+    const respPokemon = await getPokemonInfo(pokemonName)
+    const evolutions = await getEvolutions(respPokemon)
+    const moves = await getMoves(respPokemon.moves)
+
+    return {
+      id: respPokemon.id,
+      name: respPokemon.name,
+      images: {
+        male: {
+          front: respPokemon.sprites.front_default,
+          back: respPokemon.sprites.back_default,
+          frontShine: respPokemon.sprites.front_shiny,
+          backShine: respPokemon.sprites.back_shiny
+        },
+        female: {
+          front: respPokemon.sprites.front_female,
+          back: respPokemon.sprites.back_female,
+          frontShine: respPokemon.sprites.front_shiny_female,
+          backShine: respPokemon.sprites.back_shiny_female
+        },
+      },
+      types: respPokemon.types.map(t => t.type.name),
+      weight: respPokemon.weight,
+      height: respPokemon.height,
+      base_experience: respPokemon.base_experience,
+      evolutions,
+      stats: respPokemon.stats.reduce((prev, curr) => ({ ...prev, [curr.stat.name]: curr.base_stat }), {}),
+      moves
+    };
+  }
+
+  const loadPokemons = async () => {
+    const pokemonsCaptured = JSON.parse(localStorage.getItem('@pokemonsCaptured')) || []
+
     const pokemonsCapturedData = await Promise.all(
       pokemonsCaptured.map(async (name) => {
         const respPokemon = await getPokemonInfo(name)
-        const evolutions = await getEvolutions(respPokemon)
-        const moves = await getMoves(respPokemon.moves)
 
         return {
           id: respPokemon.id,
@@ -149,24 +179,9 @@ export default function Pokedex() {
           images: {
             male: {
               front: respPokemon.sprites.front_default,
-              back: respPokemon.sprites.back_default,
-              frontShine: respPokemon.sprites.front_shiny,
-              backShine: respPokemon.sprites.back_shiny
-            },
-            female: {
-              front: respPokemon.sprites.front_female,
-              back: respPokemon.sprites.back_female,
-              frontShine: respPokemon.sprites.front_shiny_female,
-              backShine: respPokemon.sprites.back_shiny_female
             },
           },
           types: respPokemon.types.map(t => t.type.name),
-          weight: respPokemon.weight,
-          height: respPokemon.height,
-          base_experience: respPokemon.base_experience,
-          evolutions,
-          stats: respPokemon.stats.reduce((prev, curr) => ({ ...prev, [curr.stat.name]: curr.base_stat }), {}),
-          moves
         };
       }))
 
@@ -182,8 +197,9 @@ export default function Pokedex() {
     return setFiltersSelecter([...filtersSelected, type])
   }
 
-  const handleClickPokemon = (pokemon: Pokemon) => {
-    setPokemonSelected(pokemon)
+  const handleClickPokemon = async (pokemon: Pokemon) => {
+    const completeInfo = await getPokemonCompleteInfo(pokemon.name)
+    setPokemonSelected(completeInfo)
     setShowModal(true)
   }
 
