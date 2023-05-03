@@ -198,7 +198,7 @@ export default function Pokedex() {
   }
 
   const handleClickPokemon = async (pokemon: Pokemon) => {
-    const completeInfo = await getPokemonCompleteInfo(pokemon.name)
+    const completeInfo = await getPokemonCompleteInfo(pokemon.name) as Pokemon
     setPokemonSelected(completeInfo)
     setShowModal(true)
   }

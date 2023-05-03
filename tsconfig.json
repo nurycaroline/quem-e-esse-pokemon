@@ -1,5 +1,11 @@
 {
   "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@vercel/analytics/react": [
+        "./node_modules/@vercel/analytics/dist/react"
+      ]
+    },
     "target": "es5",
     "downlevelIteration": true,
     "lib": [
